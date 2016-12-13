@@ -1,0 +1,34 @@
+
+# # # # VIRTUALENV FIRST SETUP # # # #
+Install virtualenv (ubuntu) with:
+	sudo apt-get install virtualenv
+
+
+Create a new virtualenv called 'venv':
+	virtualenv venv
+# # # # # # # # # # # # # # # # # # # #
+
+
+
+
+# # # # USE VIRTUALENV # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+Activate virtual env with:
+	. venv/bin/activate
+
+
+De-activate with:
+	deactivate
+
+
+So, activate venv in the server folder, than install flask in venv:
+	. venv/bin/activate
+	sudo pip install Flask
+
+
+Now we can pass to flask whatever python file to use as index for the server:
+	export FLASK_APP=testflask.py
+
+And then start the server with:
+	flask run
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #

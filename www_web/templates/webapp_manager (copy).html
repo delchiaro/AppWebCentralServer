@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>App Manager</title>
+	<script>
+
+	function readOnlyModule(readOnlyFlag) {
+
+		document.getElementById("appForm").appId.readOnly 		= readOnlyFlag;
+		document.getElementById("appForm").appName.readOnly		= readOnlyFlag;
+		document.getElementById("appForm").versionCode.readOnly = readOnlyFlag;
+	}
+
+
+	function FillAppModule(f) {
+	var id 	  = f.appid.value
+
+	readOnlyModule(true);
+	document.getElementById("appForm").appId.value			= f.appid.value;
+	document.getElementById("appForm").appName.value		= f.appname.value;
+	document.getElementById("appForm").versionCode.value	= parseInt(f.vcode.value)+1;
+
+	document.getElementById("appForm").lat.value	= f.lat.value;
+	document.getElementById("appForm").long.value	= f.long.value;
+
+	document.getElementById("appForm").uid_namespace.value	= f.namespace.value;
+	document.getElementById("appForm").uid_instance.value	= f.instance.value;
+	document.getElementById("appForm").tlm.value			= f.TLM.value;
+
+  }
+
+	</script>
+  </head>
+
+  <body>
+
+    <h2>App list: </h2>
+
+
+        <table border="1px">
+
+		
+
+			<tr>				
+				<th>ID</th>
+				<th>Name</th>
+				<th>V.Code</th>
+				<th>V.Name</th>	
+				<th>Latitude</th>
+				<th>Longitude</th>
+				<th>UID namespace</th>
+				<th>UID instance</th>
+				<th>URL</th>
+				<th>TLM</th>
+				<th>Update!</th>
+			</tr>
+
+ 			{% for app in app_list %}
+			<form action="WebApp" enctype="multipart/form-data">
+      			<tr>
+                	<td><input size="20"type="text"   name="appid" 	 value='{{ app.appId }}' 	   readonly></td>
+					<td><input size="8" type="text"	  name="appname" value='{{ app.appName }}' 	   readonly></td>
+					<td><input size="1" type="number" name="vcode" 	 value='{{ app.versionCode }}' style="width:50px;" readonly></td>
+					<td><input size="1" type="text"   name="vname" 	 value='{{ app.versionName }}' readonly></td>
+
+					<td><input size="5" type="text" 	 name="lat" 	value='{{ app.lat }}' readonly></td>
+					<td><input size="5" type="text" 	 name="long" 	value='{{ app.long }}' readonly></td>
+
+					<td><input size="6" type="text" 	 name="namespace" 	value='{{ app.beacon.UID_namespace }}' readonly></td>
+					<td><input size="4" type="text" 	 name="instance" 	value='{{ app.beacon.UID_instance }}' readonly></td>
+					<td><input size="7" type="text" 	 name="URL" 		value='{{ app.beacon.URL }}' readonly></td>
+					<td><input size="4" type="text" 	 name="TLM" 		value='{{ app.beacon.TLM }}' readonly></td>
+
+					<td><button type="button" onclick="javascript:FillAppModule(this.form)">UpdateMe</button></td>
+            	</tr>
+			</form>      		
+			{% endfor %}
+			
+			
+        </table>
+
+
+    </form>
+
+
+	<br><br><br>
+
+    <h2>Insert new app: </h2>
+
+    <form id="appForm" action="sendapp" method="POST" enctype="multipart/form-data">
+
+        <table style="width:100%" border="1px">
+<!--
+			<tr>
+              <td>Company Identifier:</td><td><input type="text" name="companyId" value="com.example.company"/></td>
+            </tr>
+
+			<tr>
+              <td>Company Name:</td>MyCompany<td><input type="text" name="companyName"/></td>
+            </tr>
+-->		
+			<tr>
+                <td>Application Identifier:</td>
+				<td><input type="text" id="appId" name="appId" value="com.example.mycompany.myapp"/></td>
+            </tr>
+			
+            <tr>
+              <td>Application Name:</td>
+			  <td><input type="text" id="appName" name="appName" value="My App"/></td>
+            </tr>
+			
+			<tr>
+              <td>Version Code:</td><td><input type="number" id="versionCode" name="versionCode" value=1 /></td>
+            </tr>
+
+			<tr>
+              <td>Version Name:</td><td><input type="text" id="versionName" name="versionName" value="1.0" /> </td>
+            </tr>
+
+			<tr>
+              	<td>Gps Coordiante:</td>
+				<td>
+					<table>
+						<tr>
+							<td>Latitude: </td>
+							<td><input type="text" id="lat" name="lat" value="" /> </td>
+						</tr>
+						<tr>
+							<td>Longitude: </td>
+							<td><input type="text" id="long" name="long" value="" /></td> 
+						</tr>
+					
+					</table>
+				</td>				
+
+            </tr>
+
+
+<tr>
+              	<td>Eddystone Beacon:</td>
+				<td>
+					<table>
+						<tr>
+							<td>UID namespace: </td>
+							<td><input type="text" id="uid_namespace" name="uid_namespace" value="" /></td> 
+						</tr>
+						<tr>
+							<td>UID instance: </td>
+							<td><input type="text" id="uid_instance" name="uid_instance" value="" /></td> 
+						</tr>
+						<tr>
+							<td>Generate URL: </td>
+							<td> <input name="generate_url" type="checkbox" value="html" checked="checked"/></td>
+						</tr>
+						<tr>
+							<td>TLM: </td>
+							<td><input type="text" id="tlm" name="tlm" value="" /> </td>
+						</tr>
+					</table>
+				</td>
+				
+
+            <!--
+            <tr>
+              <td>Main Class:</td>        <td><input type="text" name="mainClass" value="Main" /></td>
+            </tr>
+          	-->
+            <tr>
+              <td>Android bundle file:</td>  <td>  <input type="file" name="fileAndroid"></td>
+            </tr>
+            
+        </table>
+
+        <input type="submit" value="Send my App"/>
+
+
+    </form>
+
+
+  </body>
+</html>

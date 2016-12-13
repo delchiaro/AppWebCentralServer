@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Send app module</title>
+
+  </head>
+
+  <body>
+
+    <h2>Insert new app: </h2>
+
+    <form action="sendapp" method="POST" enctype="multipart/form-data">
+
+        <table style="width:100%" border="1px">
+<!--
+			<tr>
+              <td>Company Identifier:</td><td><input type="text" name="companyId" value="com.example.company"/></td>
+            </tr>
+
+			<tr>
+              <td>Company Name:</td>MyCompany<td><input type="text" name="companyName"/></td>
+            </tr>
+-->		
+			<tr>
+                <td>Application Identifier:</td>  <td><input type="text" name="appId" value="com.example.mycompany.myapp"/></td>
+            </tr>
+			
+            <tr>
+              <td>Application Name:</td><td><input type="text" name="appName" value="My App"/></td>
+            </tr>
+			
+			<tr>
+              <td>Version Code:</td><td><input type="number" name="versionCode" value=1 /></td>
+            </tr>
+
+			<tr>
+              <td>Version Name:</td><td><input type="text" name="versionName" value="1.0" /> </td>
+            </tr>
+
+            <!--
+            <tr>
+              <td>Main Class:</td>        <td><input type="text" name="mainClass" value="Main" /></td>
+            </tr>
+          	-->
+            <tr>
+              <td>Android bundle file:</td>  <td>  <input type="file" name="fileAndroid"></td>
+            </tr>
+            
+        </table>
+
+        <input type="submit" value="Send my App"/>
+
+
+    </form>
+
+
+  </body>
+</html>

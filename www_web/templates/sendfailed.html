@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Send file failed: {{ cause }}</title>
+  </head>
+
+  <body>
+
+
+    <h2>Can't send file.. {{ cause }}</h2>
+
+	 {% for error in error_list %}
+      <li>{{ error }}</li>
+      {% endfor %}
+
+  </body>
+</html>

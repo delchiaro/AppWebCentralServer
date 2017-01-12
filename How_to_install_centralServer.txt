@@ -1,0 +1,8 @@
+Entrare nella directory che diventerá la root del CentralServer ed eseguire:
+
+virtualenv venv
+. venv/bin/activate
+pip install Flask
+pip install protobuf
+pip install flask_login
+

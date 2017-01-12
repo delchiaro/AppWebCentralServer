@@ -1,0 +1,3 @@
+cd <webapp>
+ln ---.index.android.bundle ../../ManagedApps/com.---.---.bundle/index.android.bundle -s -r
+
